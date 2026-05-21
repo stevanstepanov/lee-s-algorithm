@@ -292,10 +292,12 @@
     const clickSound = new Audio("click.mp3");
     const startSound = new Audio("start.mp3");
     const winnerSound = new Audio("winner.mp3");
+    const failedSound = new Audio("failed.mp3");
 
     clickSound.preload = "auto";
     startSound.preload = "auto";
     winnerSound.preload = "auto";
+    failedSound.preload = "auto";
 
     let mode = "idle";
     let running = false;
@@ -507,8 +509,11 @@
 
       if (!found) {
         message.textContent = "Ne postoji put do targeta.";
+        playSound(failedSound);
         running = false;
-        routeBtn.disabled = false;
+        startBtn.disabled = true;
+        routeBtn.disabled = true;
+        obstaclesBtn.disabled = true;
         return;
       }
 
